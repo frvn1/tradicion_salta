@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#756047">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="assets/icon-192.png" type="image/png">
+  <link rel="apple-touch-icon" href="assets/icon-192.png">
+  <title>Administración | Tradición de Salta</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="admin-body">
+  <div id="login-view" class="login-layout">
+    <div class="login-brand-panel">
+      <a class="brand brand-light" href="index.html"><span class="brand-mark">T</span><span><strong>TRADICIÓN DE SALTA</strong><small>HOTEL · SALTA</small></span></a>
+      <div class="login-message"><span class="eyebrow light-eyebrow">ESPACIO PRIVADO</span><h1>La hospitalidad<br>también está en<br><em>los detalles.</em></h1><p>Administrá visitas, fidelización y beneficios desde un solo lugar.</p></div>
+      <div class="login-panel-foot">TRADICIÓN DE SALTA <span>•</span> PANEL DE GESTIÓN</div>
+    </div>
+    <div class="login-form-panel">
+      <div class="login-form-box">
+        <div class="mini-icon">↗</div>
+        <p class="eyebrow dark-eyebrow">BIENVENIDO DE NUEVO</p>
+        <h2>Ingresar al panel</h2>
+        <p class="muted">Usá las credenciales de demostración para explorar el sistema.</p>
+        <form id="login-form" novalidate>
+          <label for="admin-user">Usuario</label>
+          <input id="admin-user" autocomplete="username" value="admin" required>
+          <label for="admin-pass">Contraseña</label>
+          <input id="admin-pass" type="password" autocomplete="current-password" value="tradicion-demo" required>
+          <p id="login-error" class="error-text" aria-live="polite"></p>
+          <button class="btn btn-primary btn-full" type="submit">Entrar al panel <span aria-hidden="true">→</span></button>
+        </form>
+        <div class="demo-credentials"><strong>Modo demo</strong><span>Usuario: admin</span><span>Contraseña: tradicion-demo</span></div>
+        <a class="back-link" href="index.html">← Volver a la página de huéspedes</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="dashboard-view" class="dashboard-layout" hidden>
+    <aside class="sidebar">
+      <a class="brand brand-light sidebar-brand" href="admin.html"><span class="brand-mark">T</span><span><strong>TRADICIÓN DE SALTA</strong><small>HOTEL · SALTA</small></span></a>
+      <div class="side-section-label">MENÚ PRINCIPAL</div>
+      <button class="side-link active" data-view="overview"><span>▦</span> Resumen</button>
+      <button class="side-link" data-view="customers"><span>♙</span> Clientes <span id="side-customer-count" class="side-count">0</span></button>
+      <button class="side-link" data-view="visits"><span>◷</span> Historial de visitas</button>
+      <button class="side-link" data-view="rewards"><span>✧</span> Noches gratis</button>
+      <div class="sidebar-bottom">
+        <div class="demo-tag"><span class="pulse"></span><div><strong>Modo demostración</strong><small>Datos guardados en este navegador</small></div></div>
+        <button id="logout-btn" class="logout-btn"><span>↪</span> Cerrar sesión</button>
+      </div>
+    </aside>
+
+    <main class="admin-main">
+      <header class="admin-header">
+        <div><p class="eyebrow dark-eyebrow">GESTIÓN DE FIDELIZACIÓN</p><h1 id="page-title">Resumen general</h1><p id="page-subtitle" class="muted">Una mirada rápida al vínculo con tus huéspedes.</p></div>
+        <div class="header-actions"><span class="date-chip" id="today-label">Hoy</span><button id="new-customer-top" class="btn btn-primary"><span>＋</span> Nuevo cliente</button><div class="avatar">AD</div></div>
+      </header>
+
+      <section id="view-overview" class="view-panel">
+        <div class="welcome-banner"><div><span class="eyebrow light-eyebrow">PANEL DEL HOTEL</span><h2>Las buenas experiencias<br>merecen volver.</h2><p>Seguimiento simple de visitas y recompensas.</p></div><div class="banner-emblem">T<span>✳</span></div></div>
+        <div class="stats-grid">
+          <article class="stat-card"><div class="stat-top"><span>Total de clientes</span><span class="stat-icon sage">♙</span></div><strong id="stat-customers">0</strong><small><span class="positive">●</span> Clientes registrados</small></article>
+          <article class="stat-card"><div class="stat-top"><span>Visitas confirmadas</span><span class="stat-icon blue">◷</span></div><strong id="stat-visits">0</strong><small>Historial completo del hotel</small></article>
+          <article class="stat-card"><div class="stat-top"><span>Premios disponibles</span><span class="stat-icon gold">✧</span></div><strong id="stat-rewards">0</strong><small>Listos para ser canjeados</small></article>
+          <article class="stat-card"><div class="stat-top"><span>Visitas este mes</span><span class="stat-icon lilac">↗</span></div><strong id="stat-month">0</strong><small>Actividad del mes actual</small></article>
+        </div>
+        <div class="content-grid">
+          <section class="panel-card">
+            <div class="section-heading"><div><h3>Visitas recientes</h3><p>Últimos movimientos registrados</p></div><button class="text-button" data-go="visits">Ver historial →</button></div>
+            <div class="table-wrap"><table><thead><tr><th>CLIENTE</th><th>FECHA Y HORA</th><th>VISITAS</th><th>ESTADO</th></tr></thead><tbody id="recent-visits-body"></tbody></table></div>
+          </section>
+          <section class="panel-card reward-panel">
+            <div class="section-heading"><div><h3>Próximos beneficios</h3><p>Clientes cerca de su recompensa</p></div><span class="sparkle">✧</span></div>
+            <div id="near-rewards" class="near-rewards"></div>
+            <div class="reward-rule"><span>✳</span><div><strong>Regla de fidelización</strong><p>3 visitas confirmadas = 1 noche gratis. El contador se reinicia al canjear el beneficio.</p></div></div>
+          </section>
+        </div>
+        <div class="demo-notice"><span>ⓘ</span><div><strong>Esta es una demo funcional</strong><p>Los cambios se guardan en el almacenamiento local de este navegador. Todavía no están sincronizados con una base de datos compartida.</p></div></div>
+      </section>
+
+      <section id="view-customers" class="view-panel" hidden>
+        <div class="toolbar"><div class="search-box"><span>⌕</span><input id="customer-search" placeholder="Buscar por DNI…" aria-label="Buscar clientes por DNI"></div><button id="export-customers" class="btn btn-secondary">↓ Exportar CSV</button><button id="new-customer" class="btn btn-primary">＋ Nuevo cliente</button></div>
+        <div class="panel-card table-panel"><div class="section-heading"><div><h3>Clientes registrados</h3><p id="customers-caption">Listado completo de huéspedes</p></div><span class="table-count" id="customer-count">0 clientes</span></div><div class="table-wrap"><table><thead><tr><th>DNI</th><th>FECHA DE ALTA</th><th>VISITAS ACTUALES</th><th>PROGRESO AL PREMIO</th><th>BENEFICIOS</th><th>ACCIONES</th></tr></thead><tbody id="customers-body"></tbody></table></div><div id="customers-empty" class="empty-state" hidden>No hay clientes que coincidan con la búsqueda.</div></div>
+      </section>
+
+      <section id="view-visits" class="view-panel" hidden>
+        <div class="toolbar"><div class="search-box"><span>⌕</span><input id="visit-search" placeholder="Buscar por DNI…" aria-label="Buscar visitas por DNI"></div><button id="export-visits" class="btn btn-secondary">↓ Exportar CSV</button></div>
+        <div class="panel-card table-panel"><div class="section-heading"><div><h3>Historial de visitas</h3><p>Cada visita confirmada queda registrada individualmente</p></div><span class="table-count" id="visits-count">0 registros</span></div><div class="table-wrap"><table><thead><tr><th>REGISTRO</th><th>DNI DEL CLIENTE</th><th>FECHA</th><th>HORA</th><th>ESTADO</th><th>ACCIÓN</th></tr></thead><tbody id="visits-body"></tbody></table></div><div id="visits-empty" class="empty-state" hidden>No se encontraron visitas.</div></div>
+      </section>
+
+      <section id="view-rewards" class="view-panel" hidden>
+        <div class="toolbar"><div class="search-box"><span>⌕</span><input id="reward-search" placeholder="Buscar por DNI…" aria-label="Buscar beneficios por DNI"></div><button id="export-rewards" class="btn btn-secondary">↓ Exportar CSV</button></div>
+        <div class="panel-card table-panel"><div class="section-heading"><div><h3>Gestión de noches gratis</h3><p>Seguimiento de beneficios disponibles y canjeados</p></div><span class="table-count" id="rewards-count">0 beneficios</span></div><div class="table-wrap"><table><thead><tr><th>DNI</th><th>OTORGADO</th><th>ESTADO</th><th>CANJEADO</th><th>ACCIÓN</th></tr></thead><tbody id="rewards-body"></tbody></table></div><div id="rewards-empty" class="empty-state" hidden>No hay beneficios que coincidan con la búsqueda.</div></div>
+      </section>
+    </main>
+  </div>
+
+  <div id="modal-backdrop" class="modal-backdrop" hidden>
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <button id="modal-close" class="modal-close" type="button" aria-label="Cerrar">×</button>
+      <div class="modal-symbol" id="modal-symbol">＋</div><p class="eyebrow dark-eyebrow" id="modal-kicker">GESTIÓN DE CLIENTES</p><h2 id="modal-title">Nuevo cliente</h2><p id="modal-description" class="muted">Registrá el DNI para crear el perfil del huésped.</p>
+      <form id="modal-form" novalidate><label for="modal-dni">Número de DNI</label><input id="modal-dni" inputmode="numeric" maxlength="10" placeholder="Ej. 30123456" required><p id="modal-error" class="error-text" aria-live="polite"></p><div class="modal-actions"><button id="modal-cancel" class="btn btn-secondary" type="button">Cancelar</button><button id="modal-submit" class="btn btn-primary" type="submit">Guardar cliente</button></div></form>
+    </section>
+  </div>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="pwa.js"></script>
+  <script src="app.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>

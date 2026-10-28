@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#756047">
+  <meta name="description" content="Registrá tus visitas y beneficios en Tradición de Salta.">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="assets/icon-192.png" type="image/png">
+  <link rel="apple-touch-icon" href="assets/icon-192.png">
+  <title>Tradición de Salta | Visitas</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="guest-body">
+  <header class="guest-top">
+    <a class="brand" href="index.html" aria-label="Tradición de Salta inicio">
+      <span class="brand-mark">T</span>
+      <span><strong>TRADICIÓN DE SALTA</strong><small>HOTEL · SALTA</small></span>
+    </a>
+    <div class="guest-top-actions"><button id="install-app-btn" class="install-app-btn" type="button">＋ Instalar nuestra app</button><a class="admin-shortcut" href="admin.html">Acceso administración <span aria-hidden="true">↗</span></a></div>
+  </header>
+
+  <main class="guest-main">
+    <section class="guest-hero">
+      <div class="eyebrow"><span class="eyebrow-line"></span> TU EXPERIENCIA, NUESTRO COMPROMISO</div>
+      <h1>Cada visita<br><em>tiene su recompensa.</em></h1>
+      <p class="hero-copy">Gracias por elegir Tradición de Salta. Registrá tu visita y acercate un poco más a disfrutar una noche especial con nosotros.</p>
+      <div class="hero-detail"><span class="detail-icon">✳</span><span>Por cada 3 visitas confirmadas, te regalamos una noche.</span></div>
+    </section>
+
+    <section class="guest-card" aria-labelledby="form-title">
+      <div class="card-topline"><span class="step-number">01</span><span>REGISTRO DE VISITA</span><span class="status-dot"></span></div>
+      <h2 id="form-title">Identificate con tu DNI</h2>
+      <p class="muted">Ingresá tu documento para que recepción pueda localizar tu registro.</p>
+      <form id="guest-form" novalidate>
+        <label for="dni">Número de DNI</label>
+        <div class="input-wrap"><span class="input-prefix">AR</span><input id="dni" name="dni" inputmode="numeric" autocomplete="off" maxlength="10" placeholder="Ej. 30123456" aria-describedby="dni-help" required></div>
+        <small id="dni-help" class="field-help">Solo números, sin puntos ni espacios.</small>
+        <button class="btn btn-primary btn-full" type="submit">Consultar mi registro <span aria-hidden="true">→</span></button>
+      </form>
+      <div id="guest-result" class="result-box" aria-live="polite" hidden></div>
+      <div class="privacy-note"><span aria-hidden="true">⌑</span><span>Tu DNI se utiliza únicamente para gestionar tus visitas y beneficios del hotel.</span></div>
+    </section>
+    <div class="guest-footer"><span>HOSPITALIDAD QUE SE RECUERDA</span><span>TRADICIÓN DE SALTA · FIDELIZACIÓN</span></div>
+  </main>
+  <script src="pwa.js"></script>
+  <script src="app.js"></script>
+  <script src="guest.js"></script>
+</body>
+</html>
